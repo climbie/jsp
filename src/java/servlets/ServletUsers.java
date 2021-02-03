@@ -5,7 +5,10 @@
 package servlets;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.Collection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -27,7 +30,7 @@ import utilisateurs.modeles.User;
 @WebServlet(name = "ServletUsers",
      urlPatterns = {"/ServletUsers"},
      initParams = {
-         @WebInitParam(name = "ressourceDir", value = "C:\\Users\\amoss\\TPJsp")
+         @WebInitParam(name = "ressourceDir", value = "C:\\Users\\HP\\Documents\\tp_jsp\\jsp")
      }
 )
 public class ServletUsers extends HttpServlet {
@@ -63,7 +66,14 @@ public class ServletUsers extends HttpServlet {
                 request.setAttribute("listeDesUsers", liste);
                 forwardTo = "index.jsp?action=listerLesUtilisateurs";
                 message = "Liste des utilisateurs";
-            } else {
+            }else if(action.equals("creerUtilisateursDeTest")) {
+                creeUtilisateurDetest();
+                Collection<User> liste = Server.uh.getUsers();
+                request.setAttribute("listeDesUsers", liste);
+                forwardTo = "index.jsp?action=listerLesUtilisateurs";
+                message = "les 3 utilisateurs ont été créés !";
+            } 
+            else {
                 forwardTo = "index.jsp?action=todo";
                 message = "La fonctionnalité pour le paramètre " + action + " est à implémenter !";
             }
@@ -110,4 +120,16 @@ public class ServletUsers extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+    private void creeUtilisateurDetest(){
+        try {
+            User user1 = new User("serge0000","Serge", "Ndraman");
+            User user2 = new User("mamady1111","Keita", "mamady");
+            User user3 = new User("barah2222","barah", "coulibaly");
+            Server.uh.addUser(user1);
+            Server.uh.addUser(user2);
+            Server.uh.addUser(user3);
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(ServletUsers.class.getName()).log(Level.SEVERE, null, ex);
+        }
+}
 }
