@@ -102,4 +102,10 @@
         <lastname>barah</lastname>
         <firstname>coulibaly</firstname>
     </user>
+    <user>
+        <id>0000</id>
+        <login>0000</login>
+        <lastname>Ndraman</lastname>
+        <firstname>serge</firstname>
+    </user>
 </users>

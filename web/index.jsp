@@ -35,9 +35,8 @@
                 rappelée par la servlet avec la liste des utilisateurs raffraichie et un message de confirmation</h2>
         <ol>
             <li><a href="ServletUsers?action=creerUtilisateursDeTest">Créer 4 utilisateurs de test</a></li>
-
             <li>Créer un utilisateur</li>
-            <form action="ServletUsers" method="get">
+            <form action="ServletUsers" method="post">
                 Nom : <input type="text" name="nom"/><br>
                 Prénom : <input type="text" name="prenom"/><br>
                 Login : <input type="text" name="login"/><br>
@@ -61,6 +60,12 @@
                 Prénom : <input type="text" name="prenom"/><br>
                 <input type="hidden" name="action" value="updateUtilisateur"/>
                 <input type="submit" value="Mettre à jour" name="submit"/>
+            </form>
+            <li>Supprimer un utilisateur</li>
+            <form action="ServletUsers" method="get">
+                login : <input type="text" name="login"/><br>
+                <input type="hidden" name="action" value="supprimerParLogin"/>
+                <input type="submit" value="Supprimer" name="submit"/>
             </form>
         </ol>
 
@@ -93,7 +98,7 @@
                 </c:forEach>
 
                 <!-- Affichage du solde total dans la dernière ligne du tableau -->
-                <tr><td><b>TOTAL</b></td><td></td><td><b>${total}</b></td><td></td></tr>
+                <tr><td><b>Total</b></td><td></td><td><b>${total}</b></td><td></td></tr>
             </table>
 
         </c:if>
